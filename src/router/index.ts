@@ -34,11 +34,6 @@ const router = createRouter({
       component: () => import('@/views/AiToolsPage.vue'),
     },
     {
-      path: '/knowledge',
-      name: 'knowledge',
-      component: () => import('@/views/KnowledgePage.vue'),
-    },
-    {
       path: '/workbench',
       name: 'workbench',
       component: () => import('@/views/WorkbenchPage.vue'),

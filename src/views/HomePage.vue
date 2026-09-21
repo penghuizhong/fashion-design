@@ -3,14 +3,12 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   ArrowRight,
-  Compass,
   Bolt,
   Play,
   Camera,
   Palette,
   PenTool,
   Layers,
-  BookOpen,
   ChevronRight,
   Download,
   Box,
@@ -18,6 +16,11 @@ import {
   Video,
   Wrench,
   WandSparkles,
+  Scissors,
+  ExternalLink,
+  Ruler,
+  Layers3,
+  Bot,
 } from 'lucide-vue-next'
 
 const router = useRouter()
@@ -26,6 +29,13 @@ const activeStyle = ref('先锋高定')
 
 const styles = ['先锋高定', '新中式国潮', '复古机能']
 const presetTags = ['+ 新中式领口', '+ 液态金属面料', '+ 廓形西装']
+
+// 制版网站地址
+const patternMakingUrl = 'https://zhiban.fangyuan-ai.com'
+
+function goToPatternMaking() {
+  window.open(patternMakingUrl, '_blank')
+}
 
 const videoCards = [
   { mode: '巴黎秀场模式', modeColor: 'text-purple-300', title: '米兰时装周光影走秀', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80' },
@@ -44,11 +54,11 @@ const toolCards = [
   { icon: Layers, title: '面料纹理生成与贴图', desc: '生成包含法线贴图、凹凸贴图的超高清无缝面料纹理（提花、刺绣、皮革等）。', color: 'bg-purple-500/10 border-purple-500/30 text-purple-400', hoverColor: 'group-hover:bg-purple-400 group-hover:text-black', linkColor: 'text-purple-400', link: '生成材质贴图' },
 ]
 
-const knowledgeCards = [
-  { tag: '2027SS 趋势', tagColor: 'text-amber-300', title: 'SS27 春夏男装/女装颜色与面料趋势解析报告', desc: '汇聚巴黎、米兰时装周最新剪裁流行元素与低碳可持续面料研判。', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80', hoverColor: 'group-hover:text-amber-300' },
-  { tag: '面料百科', tagColor: 'text-cyan-300', title: '高定丝绸与重磅羊绒的物理悬垂力学参数数据库', desc: '包含3000+种常用纺织物的拉伸、缩水率及仿真3D渲染参数。', img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80', hoverColor: 'group-hover:text-cyan-300' },
-  { tag: '经典廓形', tagColor: 'text-purple-300', title: '百年服装经典廓形解构与矢量打板图谱', desc: '涵盖迪奥New Look、巴伦西亚加雕塑廓形等经典结构拆解教程。', img: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=80', hoverColor: 'group-hover:text-purple-300' },
-  { tag: '大师设计语言', tagColor: 'text-emerald-300', title: '大师级服装设计师色彩与立体裁剪Prompt提示词集', desc: '精炼200+位高级时装大师的设计语言词库，助力精准生成灵感。', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80', hoverColor: 'group-hover:text-emerald-300' },
+const patternFeatures = [
+  { icon: Ruler, title: '智能公式计算器', desc: '一键计算袖窿深、领围、肩斜等核心制版参数，支持多种体型系数自动换算。', color: 'bg-amber-500/10 border-amber-500/30 text-amber-400', hoverColor: 'group-hover:bg-amber-400 group-hover:text-black' },
+  { icon: Layers3, title: 'CAD 图稿资源库', desc: '海量工业级版型图纸，涵盖男女装、童装、内衣全品类，支持DXF/AAMA格式导出。', color: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400', hoverColor: 'group-hover:bg-cyan-400 group-hover:text-black' },
+  { icon: Bot, title: 'AI 制版助手', desc: '自然语言描述即可生成初版版型，自动放码推档，大幅缩短制版师从草图到样板的时间。', color: 'bg-purple-500/10 border-purple-500/30 text-purple-400', hoverColor: 'group-hover:bg-purple-400 group-hover:text-black' },
+  { icon: Scissors, title: '制版视频教程', desc: '从基础打版到高级定制，系统化视频课程体系，助力制版师技能进阶。', color: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400', hoverColor: 'group-hover:bg-emerald-400 group-hover:text-black' },
 ]
 
 function handleGenerate() {
@@ -91,9 +101,10 @@ function handleGenerate() {
             <span class="text-sm font-bold tracking-wide">立即体验 AI 创款</span>
             <ArrowRight class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button class="w-full sm:w-auto px-8 py-4 rounded-full btn-secondary flex items-center justify-center gap-3" @click="router.push('/knowledge')">
-            <Compass class="h-4 w-4 text-amber-400" />
-            <span class="text-sm font-medium">探索设计知识库</span>
+          <button class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-black flex items-center justify-center gap-3 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transition-all group" @click="goToPatternMaking">
+            <Scissors class="h-4 w-4" />
+            <span class="text-sm font-bold">前往服装制版平台</span>
+            <ExternalLink class="h-3.5 w-3.5 opacity-70 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
@@ -313,31 +324,62 @@ function handleGenerate() {
       </div>
     </section>
 
-    <!-- ==================== KNOWLEDGE BASE SECTION ==================== -->
-    <section class="py-24 relative z-10 border-t border-white/5">
+    <!-- ==================== PATTERN MAKING SECTION ==================== -->
+    <section class="py-24 relative z-10 border-t border-white/5" style="background: linear-gradient(to bottom, rgba(251, 191, 36, 0.03), transparent);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <div class="flex items-center gap-2 text-amber-400 text-xs tracking-widest uppercase font-semibold mb-2">
-              <BookOpen class="h-4 w-4" />
-              <span>FEATURE 05 / KNOWLEDGE BASE</span>
+              <Scissors class="h-4 w-4" />
+              <span>FEATURE 05 / PATTERN MAKING</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">设计知识库 · 洞察全球流行趋势</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">服装制版 · 专业制版平台</h2>
+            <p class="text-gray-400 text-sm mt-3 max-w-xl">
+              方圆智版 — 专为服装制版师打造的智能制版工作台，与方圆智设设计端数据互通，实现从设计到生产的无缝衔接。
+            </p>
           </div>
-          <button class="text-xs text-amber-300 hover:text-white flex items-center gap-1 mt-4 md:mt-0" @click="router.push('/knowledge')">
-            <span>查看完整WGSN趋势索引</span>
-            <ChevronRight class="h-3 w-3" />
+          <button class="text-xs text-amber-300 hover:text-white flex items-center gap-1 mt-4 md:mt-0 group" @click="goToPatternMaking">
+            <span>立即前往制版平台</span>
+            <ExternalLink class="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div v-for="card in knowledgeCards" :key="card.title" class="glass-card rounded-2xl p-5 border border-white/10 group cursor-pointer" @click="router.push('/knowledge')">
-            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
-              <img :src="card.img" :alt="card.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-              <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-[10px] px-2 py-0.5 rounded border border-white/10" :class="card.tagColor">{{ card.tag }}</span>
+          <div v-for="feature in patternFeatures" :key="feature.title" class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between group cursor-pointer" @click="goToPatternMaking">
+            <div>
+              <div class="w-12 h-12 rounded-xl border flex items-center justify-center text-xl mb-5 transition-colors" :class="[feature.color, feature.hoverColor]">
+                <component :is="feature.icon" class="h-5 w-5" />
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">{{ feature.title }}</h3>
+              <p class="text-xs text-gray-400 leading-relaxed">{{ feature.desc }}</p>
             </div>
-            <h4 class="text-sm font-bold text-white mb-2 transition-colors" :class="card.hoverColor">{{ card.title }}</h4>
-            <p class="text-xs text-gray-400 line-clamp-2">{{ card.desc }}</p>
+            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-amber-400">
+              <span>前往体验</span>
+              <ArrowRight class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 双平台联动说明 -->
+        <div class="mt-12 glass-card rounded-2xl p-8 border border-amber-500/20 bg-gradient-to-r from-amber-500/5 to-transparent">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-8">
+              <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                <span class="text-amber-400">设计 × 制版</span>
+                双平台无缝联动
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                方圆智设（AI服装设计）与方圆智版（AI服装制版）深度打通，设计稿一键转版型参数，
+                从创意灵感、效果渲染到工业制版，全链路数字化协同，让设计落地更高效。
+              </p>
+            </div>
+            <div class="md:col-span-4 flex md:justify-end">
+              <button class="w-full md:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-black text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transition-all group" @click="goToPatternMaking">
+                <Scissors class="h-4 w-4" />
+                <span>进入制版平台</span>
+                <ExternalLink class="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
