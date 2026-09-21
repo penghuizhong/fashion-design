@@ -7,7 +7,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>AI Fashion Studio - 专业服装设计工作台</title>
+    <title>方圆智设 · AI 服装设计平台</title>
+    <script>
+      // 主题初始化 - 在页面渲染前执行，防止闪烁
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          var isLight = saved ? saved === 'light' : prefersLight;
+          if (isLight) {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   Home,
@@ -31,6 +31,11 @@ const isLightTheme = ref(false)
 // 制版网站地址
 const patternMakingUrl = 'https://zhiban.fangyuan-ai.com'
 
+// 初始化主题（从 localStorage 读取，与 index.html 中的防闪烁脚本同步）
+onMounted(() => {
+  isLightTheme.value = document.documentElement.classList.contains('light-theme')
+})
+
 const navItems = [
   { name: '首页', path: '/' },
   { name: '趋势', path: '/trends' },
@@ -59,8 +64,10 @@ function toggleTheme() {
   isLightTheme.value = !isLightTheme.value
   if (isLightTheme.value) {
     document.documentElement.classList.add('light-theme')
+    localStorage.setItem('theme', 'light')
   } else {
     document.documentElement.classList.remove('light-theme')
+    localStorage.setItem('theme', 'dark')
   }
 }
 
