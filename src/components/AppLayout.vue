@@ -161,7 +161,7 @@ function scrollToTop() {
                       <span class="font-bold">钟</span>
                     </div>
                     <div class="min-w-0">
-                      <div class="text-sm font-semibold text-white truncate">钟总</div>
+                      <div class="text-sm font-semibold text-white truncate">钟</div>
                       <div class="text-xs text-gray-400 truncate">zhong@fangyuan-ai.com</div>
                     </div>
                   </div>
